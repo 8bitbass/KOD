@@ -9,7 +9,7 @@ public class NewBehaviourScript : MonoBehaviour
 		//doodle
         //fuckthishs=tasfnkl
         //doing thingamaboobs
-        //whate v
+        //whatever
 	
 	}
 
