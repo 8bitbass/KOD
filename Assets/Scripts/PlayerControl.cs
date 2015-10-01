@@ -32,6 +32,7 @@ public class PlayerControl : MonoBehaviour
         transform.localPosition += transform.forward * r;
 
         //transform.Rotate(0, horizontal * 3, 0);
+        //testing testing
 
 
     }
