@@ -10,7 +10,7 @@ public class NewBehaviourScript : MonoBehaviour
         //fuckthishs=tasfnkl
         //doing thingamaboobs
         //hjello
-        //whate v
+        //what
         //whatever
 	
 	}
