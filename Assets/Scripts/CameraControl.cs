@@ -5,12 +5,9 @@ public class CameraControl : MonoBehaviour
 {
     public float distanceAway;
     public float distanceUp;
-    public float smooth;
-    public Vector3 offset = new Vector3(0f, 1.5f, 0f);
     private Transform followXForm;
+
     private Vector3 targetPosition;
-
-
     private Vector3 lookDir;
 
 
@@ -32,7 +29,7 @@ public class CameraControl : MonoBehaviour
 
     void LateUpdate()
     {
-        Vector3 characterOffset = followXForm.position + offset;
+        Vector3 characterOffset = followXForm.position + new Vector3(0f, distanceUp, 0f);
 
 
         lookDir = characterOffset - this.transform.position;
@@ -44,17 +41,26 @@ public class CameraControl : MonoBehaviour
         //targetPosition = followXForm.position + followXForm.up * distanceUp - followXForm.forward * distanceAway;
         targetPosition = characterOffset + followXForm.up * distanceUp - lookDir * distanceAway;
 
+        CompensateForWalls(characterOffset, ref targetPosition);
 
         //camera smoothing
-        //transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * smooth);
-        smoothPosition(this.transform.position, targetPosition);
+        SmoothPosition(this.transform.position, targetPosition);
 
         //make sure camera is looking the right way
         transform.LookAt(followXForm);
     }
 
-    private void smoothPosition(Vector3 fromPos, Vector3 toPos)
+    private void SmoothPosition(Vector3 fromPos, Vector3 toPos)
     {
         this.transform.position = Vector3.SmoothDamp(fromPos, toPos, ref velocityCamSmooth, camSmoothDampTime);
+    }
+
+    private void CompensateForWalls(Vector3 fromObject, ref Vector3 toTarget)
+    {
+        RaycastHit wallHit = new RaycastHit();
+        if (Physics.Linecast(fromObject, toTarget, out wallHit))
+        {
+            toTarget = new Vector3(wallHit.point.x, toTarget.y, wallHit.point.z);
+        }
     }
 }

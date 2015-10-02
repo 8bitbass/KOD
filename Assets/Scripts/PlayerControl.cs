@@ -66,8 +66,8 @@ public class PlayerControl : MonoBehaviour
 
         //debug stuff
         Vector3 debugVector3 = new Vector3(root.position.x, root.position.y + 2f, root.position.z);
-        Debug.DrawRay(debugVector3, moveDirection, Color.green);
-        Debug.DrawRay(debugVector3, rootDirection, Color.magenta);
+        //Debug.DrawRay(debugVector3, moveDirection, Color.green);
+       // Debug.DrawRay(debugVector3, rootDirection, Color.magenta);
         Debug.DrawRay(debugVector3, stickDirection, Color.blue);
 
 
