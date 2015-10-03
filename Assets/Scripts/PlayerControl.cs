@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerControl : MonoBehaviour
@@ -18,18 +19,18 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        horizontal = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        vertical = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
 
-        r = new Vector2(horizontal, vertical).sqrMagnitude;
+        //r = new Vector2(horizontal, vertical).sqrMagnitude;
 
-        StickToWorldSpace(this.transform, gamecam.transform, ref direction, ref speeder);
+        StickToWorldSpace(this.transform, gamecam.transform, ref direction, ref r);
 
         //Vector3 newPosition = transform.position;
         //newPosition.z += vertical;
         //transform.localPosition = newPosition;
 
-        transform.localPosition += transform.forward * r;
+        transform.localPosition += transform.forward * r * Time.deltaTime;
 
         //transform.Rotate(0, horizontal * 3, 0);
         //testing testing
@@ -39,15 +40,15 @@ public class PlayerControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        if ((direction >= 0 && horizontal >= 0) || (direction < 0 && horizontal < 0))
-        {
-            Vector3 rotationAmount = Vector3.Lerp(Vector3.zero, new Vector3(0f, rotationDegreesPerSecond * (horizontal < 0f ? -1f : 1f), 0f), Mathf.Abs(horizontal));
-            Quaternion deltaRotation = Quaternion.Euler(rotationAmount * Time.deltaTime);
-            this.transform.rotation = (this.transform.rotation * deltaRotation);
-        }
+        //if ((direction >= 0 && horizontal >= 0) || (direction < 0 && horizontal < 0))
+        //{
+        //    Vector3 rotationAmount = Vector3.Lerp(Vector3.zero, new Vector3(0f, rotationDegreesPerSecond * (horizontal < 0f ? -1f : 1f), 0f), Mathf.Abs(horizontal));
+        //    Quaternion deltaRotation = Quaternion.Euler(rotationAmount * Time.deltaTime);
+        //    this.transform.rotation = (this.transform.rotation * deltaRotation);
+        //}
     }
 
-    public void StickToWorldSpace(Transform root, Transform camera, ref float directionOut, ref float speedOut)
+    public void StickToWorldSpace(Transform root, Transform cameraPos, ref float directionOut, ref float speedOut)
     {
         Vector3 rootDirection = root.forward;
 
@@ -56,25 +57,36 @@ public class PlayerControl : MonoBehaviour
         speedOut = stickDirection.sqrMagnitude;
 
         //get camera rotation
-        Vector3 cameraDirection = camera.forward;
+        Vector3 cameraDirection = cameraPos.forward;
         cameraDirection.y = 0.0f;
-        Quaternion referentialShift = Quaternion.FromToRotation(Vector3.forward, cameraDirection); // puts cameraDirection in the same vector space as Vector3.forward
 
-        //convert joystick input in worldspace coordinates
+        Quaternion referentialShift = Quaternion.FromToRotation(Vector3.forward, cameraDirection.normalized);
+
         Vector3 moveDirection = referentialShift * stickDirection;
-        Vector3 axisSign = Vector3.Cross(moveDirection, rootDirection);
 
-        //debug stuff
-        Vector3 debugVector3 = new Vector3(root.position.x, root.position.y + 2f, root.position.z);
-        //Debug.DrawRay(debugVector3, moveDirection, Color.green);
-       // Debug.DrawRay(debugVector3, rootDirection, Color.magenta);
-        Debug.DrawRay(debugVector3, stickDirection, Color.blue);
+        transform.forward = moveDirection;
+        
+
+        Debug.Log(stickDirection);
 
 
-        float angleRootToMove = Vector3.Angle(rootDirection, moveDirection) * (axisSign.y >= 0 ? -1f : 1f);
+        ////convert joystick input in worldspace coordinates
+        //Vector3 moveDirection = referentialShift * stickDirection;
+        //Vector3 axisSign = Vector3.Cross(moveDirection, rootDirection);
 
-        angleRootToMove /= 180;
+        ////debug stuff
+        //Vector3 debugVector3 = new Vector3(root.position.x, root.position.y + 2f, root.position.z);
+        ////Debug.DrawRay(debugVector3, moveDirection, Color.green);
+        ////Debug.DrawRay(debugVector3, rootDirection, Color.magenta);
+        //Debug.DrawRay(debugVector3, stickDirection, Color.blue);
 
-        directionOut = angleRootToMove * directionSpeed;
+        //transform.forward = moveDirection;
+
+
+        //float angleRootToMove = Vector3.Angle(rootDirection, moveDirection) * (axisSign.y >= 0 ? -1f : 1f);
+
+        //angleRootToMove /= 180;
+
+        //directionOut = angleRootToMove * directionSpeed;
     }
 }
