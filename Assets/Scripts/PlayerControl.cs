@@ -30,7 +30,7 @@ public class PlayerControl : MonoBehaviour
         //newPosition.z += vertical;
         //transform.localPosition = newPosition;
 
-        transform.localPosition += transform.forward * r * Time.deltaTime;
+        transform.localPosition += transform.forward * r * speed * Time.deltaTime;
 
         //transform.Rotate(0, horizontal * 3, 0);
         //testing testing
@@ -64,14 +64,13 @@ public class PlayerControl : MonoBehaviour
 
         Vector3 moveDirection = referentialShift * stickDirection;
 
-        transform.forward = moveDirection;
+        transform.forward = Vector3.Slerp(rootDirection, moveDirection, .25f);
         
 
         Debug.Log(stickDirection);
 
 
         ////convert joystick input in worldspace coordinates
-        //Vector3 moveDirection = referentialShift * stickDirection;
         //Vector3 axisSign = Vector3.Cross(moveDirection, rootDirection);
 
         ////debug stuff
