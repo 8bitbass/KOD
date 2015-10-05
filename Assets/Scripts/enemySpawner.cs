@@ -5,7 +5,7 @@ public class enemySpawner : MonoBehaviour
 {
     //member variables
     public float spawnTimer;
-    public GameObject enemy;
+    public GameObject enemy, target;
     private float currentSpawnTime;
 
     // Use this for initialization
@@ -21,6 +21,7 @@ public class enemySpawner : MonoBehaviour
         if(currentSpawnTime > spawnTimer)
         {
             GameObject newEnemy = Instantiate(enemy, transform.position, Quaternion.identity) as GameObject;
+            newEnemy.GetComponent<enemyBehavior>().dest = target;
             currentSpawnTime = 0;
         }
     }

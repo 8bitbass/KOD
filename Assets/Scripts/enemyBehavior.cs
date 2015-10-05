@@ -5,7 +5,7 @@ public class enemyBehavior : MonoBehaviour
 {
     //member variables
     public float speed;
-    public Vector3 dest;
+    public GameObject dest;
 
     // Use this for initialization
     void Start()
@@ -23,7 +23,7 @@ public class enemyBehavior : MonoBehaviour
     {
         if (transform.position.y <= 1.05f)
         {
-            Vector3 newPosition = transform.position + (dest - transform.position).normalized * speed * Time.deltaTime;
+            Vector3 newPosition = transform.position + (dest.transform.position - transform.position).normalized * speed * Time.deltaTime;
             GetComponent<Rigidbody>().MovePosition(newPosition);
         }
     }
