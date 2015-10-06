@@ -4,7 +4,7 @@ using System.Collections;
 public class enemyBehavior : MonoBehaviour
 {
     //member variables
-    public float speed;
+    public float speed, lifeTimer;
     public GameObject dest;
 
     // Use this for initialization
@@ -21,10 +21,26 @@ public class enemyBehavior : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (transform.position.y <= 1.05f)
+        if (Physics.Raycast(transform.position, Vector3.down))
         {
             Vector3 newPosition = transform.position + (dest.transform.position - transform.position).normalized * speed * Time.deltaTime;
             GetComponent<Rigidbody>().MovePosition(newPosition);
         }
+
+        lifeTimer -= 1 * Time.deltaTime;
+
+        if (lifeTimer <= 0)
+        {
+            Delete();
+        }
+        if (transform.position.y <= -100)
+        {
+            Delete();
+        }
+    }
+
+    void Delete()
+    {
+        GameObject.Destroy(gameObject);
     }
 }

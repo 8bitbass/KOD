@@ -4,7 +4,7 @@ using System.Collections;
 public class enemySpawner : MonoBehaviour
 {
     //member variables
-    public float spawnTimer;
+    public float spawnTimer, lifeTimer;
     public GameObject enemy, target;
     private float currentSpawnTime;
 
@@ -20,9 +20,18 @@ public class enemySpawner : MonoBehaviour
         currentSpawnTime += Time.deltaTime;
         if(currentSpawnTime > spawnTimer)
         {
-            GameObject newEnemy = Instantiate(enemy, transform.position, Quaternion.identity) as GameObject;
-            newEnemy.GetComponent<enemyBehavior>().dest = target;
+            SpawnEnemy();
+            SpawnEnemy();
+            SpawnEnemy();
             currentSpawnTime = 0;
         }
+    }
+
+    void SpawnEnemy()
+    {
+        GameObject newEnemy = Instantiate(enemy, transform.position, Quaternion.identity) as GameObject;
+        newEnemy.GetComponent<enemyBehavior>().dest = target;
+        newEnemy.GetComponent<enemyBehavior>().lifeTimer = lifeTimer;
+
     }
 }

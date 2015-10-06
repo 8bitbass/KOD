@@ -17,7 +17,7 @@ public class PlayerControl : MonoBehaviour
     private float speeder = 0.0f;
     private float direction = 0.0f;
 
-    void Update()
+    void FixedUpdate()
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
@@ -38,15 +38,15 @@ public class PlayerControl : MonoBehaviour
 
     }
 
-    void FixedUpdate()
-    {
+    //void FixedUpdate()
+    //{
         //if ((direction >= 0 && horizontal >= 0) || (direction < 0 && horizontal < 0))
         //{
         //    Vector3 rotationAmount = Vector3.Lerp(Vector3.zero, new Vector3(0f, rotationDegreesPerSecond * (horizontal < 0f ? -1f : 1f), 0f), Mathf.Abs(horizontal));
         //    Quaternion deltaRotation = Quaternion.Euler(rotationAmount * Time.deltaTime);
         //    this.transform.rotation = (this.transform.rotation * deltaRotation);
         //}
-    }
+    //}
 
     public void StickToWorldSpace(Transform root, Transform cameraPos, ref float directionOut, ref float speedOut)
     {
