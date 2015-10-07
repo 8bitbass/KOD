@@ -22,12 +22,8 @@ public class CameraControl : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
 
-    }
-
-    void LateUpdate()
+    void FixedUpdate()
     {
         Vector3 characterOffset = followXForm.position + new Vector3(0f, distanceUp, 0f);
 
