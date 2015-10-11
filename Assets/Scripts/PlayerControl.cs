@@ -5,8 +5,8 @@ using System.Collections;
 public class PlayerControl : MonoBehaviour
 {
     //OnAnimatorMove might be required later on.
-    public float speed = 0.0f;
-    public float directionSpeed = 1.5f;
+    public float speed = 6.1f;
+    public float directionSpeed = 4f;
     public float rotationDegreesPerSecond = 120f;
     private float horizontal = 0.0f;
     private float vertical = 0.0f;
@@ -64,7 +64,7 @@ public class PlayerControl : MonoBehaviour
 
         Vector3 moveDirection = referentialShift * stickDirection;
 
-        transform.forward = Vector3.Slerp(rootDirection, moveDirection, .25f);
+        transform.forward = Vector3.Slerp(rootDirection, moveDirection, speedOut * .2f);
         
 
         Debug.Log(stickDirection);

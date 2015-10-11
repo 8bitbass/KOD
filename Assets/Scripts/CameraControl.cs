@@ -3,8 +3,8 @@ using System.Collections;
 
 public class CameraControl : MonoBehaviour
 {
-    public float distanceAway;
-    public float distanceUp;
+    public float distanceAway = 7f;
+    public float distanceUp = 1f;
     private Transform followXForm;
 
     private Vector3 targetPosition;
