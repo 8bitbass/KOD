@@ -55,6 +55,10 @@ public class PlayerControl : MonoBehaviour
         Vector3 stickDirection = new Vector3(horizontal, 0, vertical);
 
         speedOut = stickDirection.sqrMagnitude;
+        if(speedOut > 1)
+        {
+            speedOut = stickDirection.normalized.sqrMagnitude;
+        }
 
         //get camera rotation
         Vector3 cameraDirection = cameraPos.forward;
