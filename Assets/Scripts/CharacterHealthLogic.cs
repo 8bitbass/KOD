@@ -30,6 +30,13 @@ public class CharacterHealthLogic : MonoBehaviour
     void Update()
     {
         CalcHealth();
+
+         if (currentHealth > maxHealth)
+         {
+             currentHealth = maxHealth;
+         }
+
+         Debug.Log(currentHealth);
     }
 
     void CalcHealth()
@@ -48,6 +55,28 @@ public class CharacterHealthLogic : MonoBehaviour
                 }
 
                 if(i.timer >= i.totalTime)
+                {
+                    i.active = false;
+                    i.healthTimer = 0;
+                    i.timer = 0;
+                }
+            }
+        }
+
+        foreach (updateHealth i in damage)
+        {
+            if (i.active)
+            {
+                i.healthTimer += Time.deltaTime;
+                i.timer += Time.deltaTime;
+
+                if (i.healthTimer >= 1)
+                {
+                    i.healthTimer -= 1;
+                    currentHealth += i.amount;
+                }
+
+                if (i.timer >= i.totalTime)
                 {
                     i.active = false;
                     i.healthTimer = 0;

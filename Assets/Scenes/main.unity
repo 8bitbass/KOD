@@ -503,6 +503,7 @@ GameObject:
   - 33: {fileID: 1141473933}
   - 65: {fileID: 1141473932}
   - 23: {fileID: 1141473931}
+  - 114: {fileID: 1141473935}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -565,6 +566,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!114 &1141473935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1141473930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caff8254da5a7e5408fe8b7adfbf8183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 10
+  damageTime: 0
 --- !u!1 &1431174779
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,6 +664,7 @@ GameObject:
   - 54: {fileID: 1464907343}
   - 136: {fileID: 1464907342}
   - 114: {fileID: 1464907344}
+  - 114: {fileID: 1464907345}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -716,3 +731,15 @@ MonoBehaviour:
   directionSpeed: 4
   rotationDegreesPerSecond: 120
   gamecam: {fileID: 173659580}
+--- !u!114 &1464907345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1464907340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e977f8fb41cc7f54b9b3418bbda0bf2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100

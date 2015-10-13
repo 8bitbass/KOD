@@ -23,8 +23,11 @@ public class enemyBehavior : MonoBehaviour
     {
         if (Physics.Raycast(transform.position, Vector3.down))
         {
-            Vector3 newPosition = transform.position + (dest.transform.position - transform.position).normalized * speed * Time.deltaTime;
-            GetComponent<Rigidbody>().MovePosition(newPosition);
+			if ((dest.transform.position - transform.position).magnitude > 0.65f)
+			{
+				Vector3 newPosition = transform.position + (dest.transform.position - transform.position).normalized * speed * Time.deltaTime;
+				GetComponent<Rigidbody>().MovePosition(newPosition);
+			}
         }
 
         lifeTimer -= 1 * Time.deltaTime;
@@ -42,5 +45,6 @@ public class enemyBehavior : MonoBehaviour
     void Delete()
     {
         GameObject.Destroy(gameObject);
+		enemySpawner.enemyCount--;
     }
 }
