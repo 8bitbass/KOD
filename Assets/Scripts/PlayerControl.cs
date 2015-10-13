@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -16,6 +17,16 @@ public class PlayerControl : MonoBehaviour
 
     private float speeder = 0.0f;
     private float direction = 0.0f;
+
+    //public enum MyEnum
+    //{
+    //    A,
+    //    B,
+    //    C,
+    //    D
+    //}
+
+    //public List<MyEnum> heal = new List<MyEnum>();
 
     void FixedUpdate()
     {
