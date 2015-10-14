@@ -33,15 +33,22 @@ public class PlayerControl : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
+        Vector2 dir = new Vector2(horizontal, vertical).normalized;
+
+        float deg = Mathf.Atan2(dir.y, -dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, deg - 90 + Camera.main.transform.rotation.eulerAngles.y, 0);
+
+        transform.position += transform.forward * 10 * Time.deltaTime;
+
         //r = new Vector2(horizontal, vertical).sqrMagnitude;
 
-        StickToWorldSpace(this.transform, gamecam.transform, ref direction, ref r);
+        //StickToWorldSpace(this.transform, gamecam.transform, ref direction, ref r);
 
         //Vector3 newPosition = transform.position;
         //newPosition.z += vertical;
         //transform.localPosition = newPosition;
 
-        transform.localPosition += transform.forward * r * speed * Time.deltaTime;
+        //transform.localPosition += transform.forward * r * speed * Time.deltaTime;
 
         //transform.Rotate(0, horizontal * 3, 0);
         //testing testing
@@ -79,7 +86,7 @@ public class PlayerControl : MonoBehaviour
 
         Vector3 moveDirection = referentialShift * stickDirection;
 
-        transform.forward = Vector3.Slerp(rootDirection, moveDirection, speedOut * .2f);
+        //transform.forward = Vector3.Slerp(rootDirection, moveDirection, speedOut * .2f);
         
 
         Debug.Log(stickDirection);
