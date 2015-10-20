@@ -17,7 +17,7 @@ public class DamageObjectLogic : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
         CharacterHealthLogic temp = collision.gameObject.GetComponent<CharacterHealthLogic>();
         if (temp != null)

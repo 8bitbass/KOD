@@ -4,7 +4,7 @@ using System.Collections;
 public class enemyBehavior : MonoBehaviour
 {
     //member variables
-    public float speed, lifeTimer;
+    public float speed;
     public GameObject dest;
 
     // Use this for initialization
@@ -30,12 +30,6 @@ public class enemyBehavior : MonoBehaviour
 			}
         }
 
-        lifeTimer -= 1 * Time.deltaTime;
-
-        if (lifeTimer <= 0)
-        {
-            Delete();
-        }
         if (transform.position.y <= -100)
         {
             Delete();
@@ -45,6 +39,5 @@ public class enemyBehavior : MonoBehaviour
     void Delete()
     {
         GameObject.Destroy(gameObject);
-		enemySpawner.enemyCount--;
     }
 }
