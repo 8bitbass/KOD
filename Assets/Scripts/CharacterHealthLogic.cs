@@ -6,7 +6,7 @@ public class CharacterHealthLogic : MonoBehaviour
 {
     public int maxHealth = 100;
 
-    public float currentHealth;
+    private float currentHealth;
 
     class updateHealth
     {

@@ -13,8 +13,6 @@ public class PlayerControl : MonoBehaviour
     private float vertical = 0.0f;
     private float r = 0.0f;
 
-    private float direction = 0.0f;
-
     //public enum MyEnum
     //{
     //    A,
@@ -30,7 +28,7 @@ public class PlayerControl : MonoBehaviour
     {
         Animator dave = GetComponent<Animator>();
 
-        if (Input.GetAxis("Fire1") != 0)
+        if (Input.GetAxis("Fire1") != 0f)
         {
             dave.SetBool("Attack", true);
         }

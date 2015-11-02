@@ -11,7 +11,7 @@ public class enemySpawner : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        EnemyManagerLogic.spawners.Add(this);
+        //EnemyManagerLogic.spawners.Add(this);
     }
 
     // Update is called once per frame
