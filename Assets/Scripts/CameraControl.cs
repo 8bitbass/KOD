@@ -7,14 +7,14 @@ public class CameraControl : MonoBehaviour
     public float distanceUp = 1f;
     private Transform followXForm;
 
-    public float freeCamActivate = 0.2f;
-    public float distanceAwayMultiplier = 1f;
-    public float distanceUpMultiplier = 1f;
+    public float freeCamActivate = 0.5f;
+    private float distanceAwayMultiplier = 1f;
+    private float distanceUpMultiplier = 1f;
 
     public float minDistanceAway = .5f;
     public float maxDistanceAway = 2f;
     public float minDistanceUp = .5f;
-    public float maxDistanceUp = 2f;
+    public float maxDistanceUp = 4f;
 
     private float rightStickHorizontal;
     private float rightStickVertical;
@@ -50,15 +50,21 @@ public class CameraControl : MonoBehaviour
 
         Vector2 rightStick = new Vector2(rightStickHorizontal, rightStickVertical);
 
+        Vector2 leftStick = new Vector2(Input.GetAxis("Horizontal"),Input.GetAxis("Vertical"));
+
         Vector3 characterOffset = followXForm.position + new Vector3(0f, distanceUp, 0f);
 
-        lookDir = characterOffset - this.transform.position;
+        lookDir = characterOffset - transform.position;
         lookDir.y = 0;
         lookDir.Normalize();
 
         if (rightStick.magnitude >= freeCamActivate)
         {
             cameraMode = State.FREE;
+        }
+        else if (Input.GetButton("Fire3"))
+        {
+            cameraMode = State.NORMAL;
         }
 
         //targetPosition = followXForm.position + followXForm.up * distanceUp - followXForm.forward * distanceAway;
@@ -68,16 +74,21 @@ public class CameraControl : MonoBehaviour
                 targetPosition = characterOffset + followXForm.up * distanceUp - lookDir * distanceAway;
                 break;
             case State.FREE:
+
                 distanceUpMultiplier -= rightStickVertical / 10;
                 distanceAwayMultiplier -= rightStickVertical / 10;
-                
+
                 distanceAwayMultiplier = Mathf.Clamp(distanceAwayMultiplier, minDistanceAway, maxDistanceAway);
                 distanceUpMultiplier = Mathf.Clamp(distanceUpMultiplier, minDistanceUp, maxDistanceUp);
 
-                transform.RotateAround(followXForm.position, Vector3.up, -rightStickHorizontal * 100 * Time.deltaTime);
+                transform.RotateAround(followXForm.position, followXForm.up, -rightStickHorizontal * 100 * Time.deltaTime);
 
-                targetPosition = characterOffset + followXForm.up * (distanceUp * distanceUpMultiplier) - lookDir * (distanceAway * distanceAwayMultiplier);
-                //targetPosition
+                targetPosition = (followXForm.forward.normalized * leftStick.magnitude) + (characterOffset + followXForm.up * (distanceUp * distanceUpMultiplier) - lookDir * (distanceAway * distanceAwayMultiplier));
+                //targetPosition.z = followXForm.position.z - (distanceAway * distanceAwayMultiplier);
+                //targetPosition.y = followXForm.position.y + (distanceUp * distanceUpMultiplier);
+                //targetPosition.x = followXForm.position.x;
+
+
                 break;
             case State.LOCKED:
                 break;
@@ -86,7 +97,7 @@ public class CameraControl : MonoBehaviour
         CompensateForWalls(characterOffset, ref targetPosition);
 
         //camera smoothing
-        SmoothPosition(this.transform.position, targetPosition);
+        SmoothPosition(transform.position, targetPosition);
 
         //make sure camera is looking the right way (this is dodgy)
         transform.LookAt(followXForm);
@@ -94,7 +105,7 @@ public class CameraControl : MonoBehaviour
 
     private void SmoothPosition(Vector3 fromPos, Vector3 toPos)
     {
-        this.transform.position = Vector3.SmoothDamp(fromPos, toPos, ref velocityCamSmooth, camSmoothDampTime);
+        transform.position = Vector3.SmoothDamp(fromPos, toPos, ref velocityCamSmooth, camSmoothDampTime);
     }
 
     private void CompensateForWalls(Vector3 fromObject, ref Vector3 toTarget)

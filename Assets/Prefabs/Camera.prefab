@@ -93,6 +93,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceAway: 7
   distanceUp: 1
+  freeCamActivate: .5
+  distanceAwayMultiplier: 1
+  distanceUpMultiplier: 1
+  minDistanceAway: .5
+  maxDistanceAway: 2
+  minDistanceUp: .5
+  maxDistanceUp: 4
   camSmoothDampTime: .100000001
 --- !u!124 &12484464
 Behaviour:
