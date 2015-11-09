@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class enemySpawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     //member variables
     public float spawnTimer;
@@ -28,6 +28,6 @@ public class enemySpawner : MonoBehaviour
     void SpawnEnemy()
     {
         GameObject newEnemy = Instantiate(enemy, transform.position, Quaternion.identity) as GameObject;
-        newEnemy.GetComponent<enemyBehavior>().dest = target;
+        newEnemy.GetComponent<EnemyBehavior>().dest = target;
     }
 }

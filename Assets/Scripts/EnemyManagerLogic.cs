@@ -4,8 +4,8 @@ using System.Collections.Generic;
 public class EnemyManagerLogic : MonoBehaviour
 {
     [HideInInspector]
-    public static List<enemySpawner> spawners;
-    private List<enemyBehavior> enemies;
+    public static List<EnemySpawner> spawners;
+    private List<EnemyBehavior> enemies;
 
 
 

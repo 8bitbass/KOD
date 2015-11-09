@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class enemyBehavior : MonoBehaviour
+public class EnemyBehavior : MonoBehaviour
 {
 	//member variables
 	public float speed;
@@ -37,8 +37,14 @@ public class enemyBehavior : MonoBehaviour
 		{
 			if ((dest.transform.position - transform.position).magnitude > 0.65f)
 			{
-				Vector3 newPosition = transform.position + (dest.transform.position - transform.position).normalized * speed * Time.deltaTime;
-				GetComponent<Rigidbody>().MovePosition(newPosition);
+				Vector3 temp = (dest.transform.position - transform.position).normalized;
+				temp.y = 0;
+				Quaternion dave = Quaternion.LookRotation(temp, Vector3.up);
+				transform.rotation = Quaternion.Lerp(transform.rotation, dave, Time.fixedDeltaTime * 10);
+
+
+				//Vector3 newPosition = transform.position + (dest.transform.position - transform.position).normalized * speed * Time.deltaTime;
+				//GetComponent<Rigidbody>().MovePosition(newPosition);
 			}
 		}
 
