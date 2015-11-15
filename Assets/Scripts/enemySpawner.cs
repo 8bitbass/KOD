@@ -1,33 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
 {
     //member variables
-    public float spawnTimer;
-    public GameObject enemy, target;
-    private float currentSpawnTime;
+    public GameObject enemy;
+
+    //private EnemySpawner currentSpawner;
 
     // Use this for initialization
     void Start()
-    {
-        //EnemyManagerLogic.spawners.Add(this);
+    {      
+        EnemyManagerLogic.spawners.Add(this);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SpawnEnemy(GameObject target)
     {
-        currentSpawnTime += Time.deltaTime;
-        if(currentSpawnTime > spawnTimer)
+        GameObject newEnemy = Instantiate(enemy, transform.position, Quaternion.identity) as GameObject;
+        EnemyBehavior newSpawn = newEnemy.GetComponent<EnemyBehavior>();
+
+        if (newSpawn != null)
         {
-            SpawnEnemy();
-            currentSpawnTime = 0;
+            newSpawn.dest = target;
+            //enemies.Add(newSpawn);
         }
     }
 
-    void SpawnEnemy()
-    {
-        GameObject newEnemy = Instantiate(enemy, transform.position, Quaternion.identity) as GameObject;
-        newEnemy.GetComponent<EnemyBehavior>().dest = target;
-    }
+
 }

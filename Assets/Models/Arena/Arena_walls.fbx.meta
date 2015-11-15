@@ -1,0 +1,156 @@
+fileFormatVersion: 2
+guid: 7de14d39387f2eb4b9ae9d365568cc4d
+timeCreated: 1447213863
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Arena_Wall
+    100002: //RootNode
+    100004: eye
+    100006: eye1
+    100008: eye2
+    100010: eye3
+    100012: eye4
+    100014: eye5
+    100016: magma
+    100018: Pillar
+    100020: Pillar1
+    100022: Pillar2
+    100024: Pillar3
+    100026: Platform
+    100028: spawn_chamber1
+    100030: spawn_chamber2
+    100032: spawn_chamber3
+    100034: spawn_chamber4
+    100036: transform1
+    100038: transform2
+    400000: Arena_Wall
+    400002: //RootNode
+    400004: eye
+    400006: eye1
+    400008: eye2
+    400010: eye3
+    400012: eye4
+    400014: eye5
+    400016: magma
+    400018: Pillar
+    400020: Pillar1
+    400022: Pillar2
+    400024: Pillar3
+    400026: Platform
+    400028: spawn_chamber1
+    400030: spawn_chamber2
+    400032: spawn_chamber3
+    400034: spawn_chamber4
+    400036: transform1
+    400038: transform2
+    2300000: Arena_Wall
+    2300002: eye2
+    2300004: eye3
+    2300006: eye4
+    2300008: eye5
+    2300010: magma
+    2300012: Pillar
+    2300014: Pillar1
+    2300016: Pillar2
+    2300018: Pillar3
+    2300020: Platform
+    2300022: spawn_chamber1
+    2300024: spawn_chamber2
+    2300026: spawn_chamber3
+    2300028: spawn_chamber4
+    3300000: Arena_Wall
+    3300002: eye2
+    3300004: eye3
+    3300006: eye4
+    3300008: eye5
+    3300010: magma
+    3300012: Pillar
+    3300014: Pillar1
+    3300016: Pillar2
+    3300018: Pillar3
+    3300020: Platform
+    3300022: spawn_chamber1
+    3300024: spawn_chamber2
+    3300026: spawn_chamber3
+    3300028: spawn_chamber4
+    4300000: eye5
+    4300002: eye4
+    4300004: eye3
+    4300006: eye2
+    4300008: spawn_chamber4
+    4300010: spawn_chamber3
+    4300012: spawn_chamber2
+    4300014: spawn_chamber1
+    4300016: magma
+    4300018: Pillar3
+    4300020: Pillar2
+    4300022: Pillar1
+    4300024: Pillar
+    4300026: Platform
+    4300028: Arena_Wall
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
