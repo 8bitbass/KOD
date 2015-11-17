@@ -21,6 +21,7 @@ public class EnemyBehavior : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        EnemyManagerLogic.enemies.Add(this);
         anim = GetComponent<Animator>();
         //GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(Random.Range(0.0f, 255.0f) / 255, Random.Range(0.0f, 255.0f) / 255, Random.Range(0.0f, 255.0f) / 255));
     }

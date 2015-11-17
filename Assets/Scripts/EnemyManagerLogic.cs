@@ -1,15 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+
 public class EnemyManagerLogic : MonoBehaviour
 {
-    public static float waveTime = 7f;
+    public float waveTime = 10f;
+    private int lastWaveEnemyCount = 1;
     private static float currentWaveTime;
 
-    public GameObject EnemyTarget;
+    public GameObject enemyTarget;
+
+    private static int waveNumber = 1;
+    public static int difficultyLevel = 5;
 
     public static List<EnemySpawner> spawners = new List<EnemySpawner>();
-    private List<EnemyBehavior> enemies;
+    public static List<EnemyBehavior> enemies = new List<EnemyBehavior>();
 
     // Use this for initialization
     void Start()
@@ -23,9 +28,11 @@ public class EnemyManagerLogic : MonoBehaviour
         currentWaveTime -= Time.deltaTime;
         if (currentWaveTime <= 0)
         {
-            EnemySpawner currentSpawner = GetClosest();
-            currentSpawner.SpawnEnemy(EnemyTarget);
+            //EnemySpawner currentSpawner = GetClosest();
+            //currentSpawner.SpawnEnemy(enemyTarget);
             currentWaveTime = waveTime;
+            SpawnWave();
+            waveNumber += 1;
         }
     }
 
@@ -35,7 +42,7 @@ public class EnemyManagerLogic : MonoBehaviour
         EnemySpawner currentClosest = null;
         foreach (EnemySpawner spawner in spawners)
         {
-            float temp = (spawner.transform.position - EnemyTarget.transform.position).magnitude;
+            float temp = (spawner.transform.position - enemyTarget.transform.position).magnitude;
             if (temp < distance)
             {
                 distance = temp;
@@ -45,24 +52,51 @@ public class EnemyManagerLogic : MonoBehaviour
         return currentClosest;
     }
 
-    void SpawnEnemies(int number)
+    private void SpawnWave()
+    {
+        int perdecAlive = (enemies.Count / lastWaveEnemyCount) * 10;
+        int difficultyMod = perdecAlive * (difficultyLevel < 5 ? -1 : 1) + (waveNumber / 10) + difficultyLevel;
+
+        Mathf.Clamp(difficultyMod, 1, 10);
+
+        int enemiesToSpawn = difficultyLevel + difficultyMod;
+        if(enemiesToSpawn < 4)
+        {
+            enemiesToSpawn = 4;
+        }
+        lastWaveEnemyCount = enemiesToSpawn;
+
+
+        for (int i = 0; i <= enemiesToSpawn /4; ++i)
+        {   
+            //SpawnEnemies();
+            Invoke("SpawnEnemies", i);
+        }
+    }
+
+    void SpawnEnemies()
     {
         EnemySpawner currentSpawner = GetClosest();
-        for (int i = 0; i < number; ++i)
-        {
-            int spawnerNum = i % 2;
-            if (spawnerNum == 1)
+            foreach (EnemySpawner spawner in spawners)
             {
-                currentSpawner.SpawnEnemy(EnemyTarget);
+                spawner.SpawnEnemy(enemyTarget);
             }
-            else
-            {
-                int currentNum = spawners.IndexOf(currentSpawner);
-                int rando = Random.Range(0, spawners.Count - 1);
 
-                spawners[rando].SpawnEnemy(EnemyTarget);
 
-            }
-        }
+
+
+            //int spawnerNum = i % 2;
+            //if (spawnerNum == 1)
+            //{
+            //    currentSpawner.SpawnEnemy(enemyTarget);
+            //}
+            //else
+            //{
+            //    int currentNum = spawners.IndexOf(currentSpawner);
+            //    int rando = Random.Range(0, spawners.Count - 1);
+
+            //    spawners[rando].SpawnEnemy(enemyTarget);
+
+            //}
     }
 }

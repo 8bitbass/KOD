@@ -1,0 +1,170 @@
+fileFormatVersion: 2
+guid: 0a1501629cfde844a9253aa30d1dbcf3
+timeCreated: 1447722552
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Cloak
+    100004: Cloak2
+    100006: Cloak3
+    100008: Cloak4
+    100010: Cloak4_end
+    100012: Hair
+    100014: Hair2
+    100016: Hair3
+    100018: Hair4
+    100020: Hair5
+    100022: Hair5_end
+    100024: Head
+    100026: Hip
+    100028: L_Finger1
+    100030: L_Finger1Tip
+    100032: L_Finger1Tip_end
+    100034: L_Finger2
+    100036: L_Finger2Tip
+    100038: L_Finger2Tip_end
+    100040: L_ForeArm
+    100042: L_Hand
+    100044: L_Shoulder
+    100046: L_Thumb
+    100048: L_ThumbTip
+    100050: L_ThumbTip_end
+    100052: L_UpperArm
+    100054: Neck
+    100056: R_Finger1
+    100058: R_Finger1Tip
+    100060: R_Finger1Tip_end
+    100062: R_Finger2
+    100064: R_Finger2Tip
+    100066: R_Finger2Tip_end
+    100068: R_ForeArm
+    100070: R_Hand
+    100072: R_Shoulder
+    100074: R_Thumb
+    100076: R_ThumbTip
+    100078: R_ThumbTip_end
+    100080: R_UpperArm
+    100082: //RootNode
+    100084: spectator
+    100086: Spine
+    100088: Spine2
+    400000: Armature
+    400002: Cloak
+    400004: Cloak2
+    400006: Cloak3
+    400008: Cloak4
+    400010: Cloak4_end
+    400012: Hair
+    400014: Hair2
+    400016: Hair3
+    400018: Hair4
+    400020: Hair5
+    400022: Hair5_end
+    400024: Head
+    400026: Hip
+    400028: L_Finger1
+    400030: L_Finger1Tip
+    400032: L_Finger1Tip_end
+    400034: L_Finger2
+    400036: L_Finger2Tip
+    400038: L_Finger2Tip_end
+    400040: L_ForeArm
+    400042: L_Hand
+    400044: L_Shoulder
+    400046: L_Thumb
+    400048: L_ThumbTip
+    400050: L_ThumbTip_end
+    400052: L_UpperArm
+    400054: Neck
+    400056: R_Finger1
+    400058: R_Finger1Tip
+    400060: R_Finger1Tip_end
+    400062: R_Finger2
+    400064: R_Finger2Tip
+    400066: R_Finger2Tip_end
+    400068: R_ForeArm
+    400070: R_Hand
+    400072: R_Shoulder
+    400074: R_Thumb
+    400076: R_ThumbTip
+    400078: R_ThumbTip_end
+    400080: R_UpperArm
+    400082: //RootNode
+    400084: spectator
+    400086: Spine
+    400088: Spine2
+    4300000: spectator
+    7400000: Cheer
+    7400002: Clap
+    7400004: Idle
+    7400006: Armature|Cheer
+    7400008: Armature|Clap
+    7400010: Armature|Idle
+    9500000: //RootNode
+    13700000: spectator
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
