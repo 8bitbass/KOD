@@ -7,8 +7,6 @@ public class EnemySpawner : MonoBehaviour
     //member variables
     public GameObject enemy;
 
-    //private EnemySpawner currentSpawner;
-
     // Use this for initialization
     void Start()
     {      
@@ -23,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
         if (newSpawn != null)
         {
             newSpawn.dest = target;
+            newSpawn.points = (EnemyManagerLogic.difficultyLevel * 5) + (EnemyManagerLogic.waveNumber/ 10);
             //enemies.Add(newSpawn);
         }
     }

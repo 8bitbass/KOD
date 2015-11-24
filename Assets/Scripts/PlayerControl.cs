@@ -13,17 +13,6 @@ public class PlayerControl : MonoBehaviour
     private float vertical = 0.0f;
     private float r = 0.0f;
 
-    //public enum MyEnum
-    //{
-    //    A,
-    //    B,
-    //    C,
-    //    D
-    //}
-
-    //public List<MyEnum> heal = new List<MyEnum>();
-
-
     void Update()
     {
         Animator dave = GetComponent<Animator>();

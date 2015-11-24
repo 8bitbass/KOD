@@ -8,6 +8,11 @@ public class EnemyBehavior : MonoBehaviour
     public GameObject dest;
     private Animator anim;
 
+    private CharacterHealthLogic healthLogic;
+
+    [HideInInspector]
+    public int points;
+
     private enum AnimationState
     {
         IDLE,
@@ -23,13 +28,13 @@ public class EnemyBehavior : MonoBehaviour
     {
         EnemyManagerLogic.enemies.Add(this);
         anim = GetComponent<Animator>();
-        //GetComponent<MeshRenderer>().material.SetColor("_Color", new Color(Random.Range(0.0f, 255.0f) / 255, Random.Range(0.0f, 255.0f) / 255, Random.Range(0.0f, 255.0f) / 255));
+        healthLogic = GetComponent<CharacterHealthLogic>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((dest.transform.position - transform.position).magnitude > 2.65f)
+        if ((dest.transform.position - transform.position).magnitude > 2.1f)
         {
             animState = AnimationState.MOVING;
         }
@@ -42,7 +47,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void FixedUpdate()
     {
-        if ((dest.transform.position - transform.position).magnitude > 2.65f)
+        if ((dest.transform.position - transform.position).magnitude > 2.0f)
         {
 
             Vector3 temp = (dest.transform.position - transform.position).normalized;
@@ -51,11 +56,9 @@ public class EnemyBehavior : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, tempQ, Time.fixedDeltaTime * 10);
 
             Vector3 newPos = transform.localPosition + transform.forward * speed * Time.fixedDeltaTime;
-            //Vector3 newPosition = transform.position + (dest.transform.position - transform.position).normalized * speed * Time.deltaTime;
             GetComponent<Rigidbody>().MovePosition(newPos);
         }
-
-        if (transform.position.y <= -100)
+        if (transform.position.y <= -100 || healthLogic == null || healthLogic.isDead)
         {
             Delete();
         }
@@ -63,7 +66,7 @@ public class EnemyBehavior : MonoBehaviour
 
     void Delete()
     {
-        GameObject.Destroy(gameObject);
+        EnemyManagerLogic.deadEnemies.Add(this);
     }
 
     void Animation()

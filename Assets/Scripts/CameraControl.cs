@@ -6,6 +6,7 @@ public class CameraControl : MonoBehaviour
     public float distanceAway = 7f;
     public float distanceUp = 1f;
     private Transform followXForm;
+    public Transform lookAtTransfrom;
 
     public float freeCamActivate = 0.5f;
     private float distanceAwayMultiplier = 1f;
@@ -94,13 +95,13 @@ public class CameraControl : MonoBehaviour
                 break;
         }
 
-        CompensateForWalls(characterOffset, ref targetPosition);
+        //CompensateForWalls(characterOffset, ref targetPosition);
 
         //camera smoothing
         SmoothPosition(transform.position, targetPosition);
 
         //make sure camera is looking the right way (this is dodgy)
-        transform.LookAt(followXForm);
+        transform.LookAt(lookAtTransfrom);
     }
 
     private void SmoothPosition(Vector3 fromPos, Vector3 toPos)

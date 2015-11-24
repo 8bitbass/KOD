@@ -6,25 +6,39 @@ public class CharacterHealthLogic : MonoBehaviour
 {
     public int maxHealth = 100;
 
-    private float currentHealth;
+    public string deathAnimation = null;
+
+    [HideInInspector]
+    public float currentHealth;
+    [HideInInspector]
+    public bool isDead = false;
 
     class updateHealth
     {
         public float amount;
-        public float totalTime;
         public float timer;
         public float healthTimer;
         public bool active = true;
     }
 
+    //public enum Elements
+    //{
+    //    WATER,
+    //    EARTH,
+    //    FIRE
+    //}
+
+    //public List<Elements> elements = new List<Elements>();
+
     List<updateHealth> healthChange = new List<updateHealth>();
     public enum DeathType
     {
         DESPAWN,
-        ANIMATION
+        ANIMATION,
+        EXTERNAL
     }
 
-    public DeathType Death;
+    public DeathType death = DeathType.EXTERNAL;
     // Use this for initialization
     void Start()
     {
@@ -40,6 +54,10 @@ public class CharacterHealthLogic : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
+        else if(currentHealth < maxHealth && currentHealth > 0)
+        {
+            currentHealth += Time.deltaTime * 5;
+        }
         else if (currentHealth <= 0)
         {
             Die();
@@ -54,16 +72,16 @@ public class CharacterHealthLogic : MonoBehaviour
         {
             if (i.active)
             {
-                i.healthTimer += Time.deltaTime;
-                i.timer += Time.deltaTime;
+                i.healthTimer -= Time.deltaTime;
+                i.timer -= Time.deltaTime;
 
-                if (i.healthTimer >= 1)
+                if (i.healthTimer <= 0)
                 {
-                    i.healthTimer -= 1;
+                    i.healthTimer += 1;
                     currentHealth += i.amount;
                 }
 
-                if (i.timer >= i.totalTime)
+                if (i.timer <= 0)
                 {
                     i.active = false;
                     i.healthTimer = 0;
@@ -75,12 +93,17 @@ public class CharacterHealthLogic : MonoBehaviour
 
     void Die()
     {
-        switch (Death)
+        switch (death)
         {
             case DeathType.DESPAWN:
+                isDead = true;
                 GameObject.Destroy(gameObject);
                 break;
             case DeathType.ANIMATION:
+                isDead = true;
+                break;
+            case DeathType.EXTERNAL:
+                isDead = true;
                 break;
         }
     }
@@ -93,9 +116,11 @@ public class CharacterHealthLogic : MonoBehaviour
         }
         else
         {
-            updateHealth temp = new updateHealth();
-            temp.amount = regenAmount / regenTime;
-            temp.totalTime = regenTime;
+            updateHealth temp = new updateHealth
+            {
+                amount = regenAmount/regenTime,
+                timer = regenTime
+            };
             healthChange.Add(temp);
         }
     }
@@ -108,9 +133,11 @@ public class CharacterHealthLogic : MonoBehaviour
         }
         else
         {
-            updateHealth temp = new updateHealth();
-            temp.amount = -(damageAmount / damageTime);
-            temp.totalTime = damageTime;
+            updateHealth temp = new updateHealth
+            {
+                amount = -(damageAmount/damageTime),
+                timer = damageTime
+            };
             healthChange.Add(temp);
         }
     }

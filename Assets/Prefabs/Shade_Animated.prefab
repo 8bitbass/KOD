@@ -1728,7 +1728,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  Death: 0
+  deathAnimation: null
+  currentHealth: 0
+  isDead: 0
+  death: 2
 --- !u!114 &11446182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1742,6 +1745,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   dest: {fileID: 0}
+  points: 0
 --- !u!136 &13676448
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1934,6 +1938,14 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: d0da4de5f565bd94187af7496be3c433, type: 2}
+    - target: {fileID: 0}
+      propertyPath: Death
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: death
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 184728}
